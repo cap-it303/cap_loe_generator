@@ -162,19 +162,19 @@ if perm_template or fix_template:
                 
                 o1, o2, o3 = st.columns([0.5, 2, 2.5])
                 o1.markdown("<br>RM", unsafe_allow_html=True)
-                outpatient = o2.text_input("Outpatient*", key="in_fix_out")
-                out_valid = bool(re.match(r"^\d+(\.\d{1,2})?$", value = "0", outpatient.replace(",",""))) if outpatient else False
+                outpatient = o2.text_input("Outpatient*", value = 0,  key="in_fix_out")
+                out_valid = bool(re.match(r"^\d+(\.\d{1,2})?$", outpatient.replace(",",""))) if outpatient else False
                 if outpatient and not out_valid: st.error("⚠️ Outpatient: Digits/Decimals only.")
 
                 tr1, tr2, tr3 = st.columns([0.5, 2, 2.5])
                 tr1.markdown("<br>RM", unsafe_allow_html=True)
-                travel = tr2.text_input("Traveling Allowance*", value = "0", key="in_fix_travel")
+                travel = tr2.text_input("Traveling Allowance*", value = 0, key="in_fix_travel")
                 travel_valid = bool(re.match(r"^\d+(\.\d{1,2})?$", travel.replace(",",""))) if travel else False
                 if travel and not travel_valid: st.error("⚠️ Traveling Allowance: Digits/Decimals only.")
 
                 kp1, kp2, kp3 = st.columns([0.5, 2, 2.5])
                 kp1.markdown("<br>RM", unsafe_allow_html=True)
-                kpi = kp2.text_input("Max KPI Payout*",  value = "0", key="in_fix_kpi")
+                kpi = kp2.text_input("Max KPI Payout*",  value = 0, key="in_fix_kpi")
                 kpi_valid = bool(re.match(r"^\d+(\.\d{1,2})?$", kpi.replace(",",""))) if kpi else False
                 if kpi and not kpi_valid: st.error("⚠️ KPI: Digits/Decimals only.")
 
