@@ -98,7 +98,7 @@ if perm_template or fix_template:
             emp_address = ""
             v['address'] = True
             if emp_type == "Permanent Employment":
-                emp_address = st.text_area("Applicant Address*", key="in_address")
+                emp_address = st.text_input("Applicant Address*", key="in_address")
                 v['address'] = bool(emp_address.strip())
                 if not v['address'] and st.session_state.show_warnings: st.warning("⚠️ Applicant Address is required.")
 
@@ -143,7 +143,7 @@ if perm_template or fix_template:
             if ceo_name and not v['ceo']: st.error("⚠️ CEO Name: Letters and spaces only.")
             elif not ceo_name and st.session_state.show_warnings: st.warning("⚠️ CEO Name is required.")
             
-            start_date = st.date_input("Start Date*", key="in_start_date")
+            start_date = st.date_input("Employment Start Date*", key="in_start_date")
 
         st.markdown("#### Contractual Terms")
         cl, cr = st.columns(2)
