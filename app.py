@@ -190,6 +190,11 @@ if perm_template or fix_template:
                 
                 f_ts = datetime(t_sy, months_list.index(t_sm_name) + 1, 1)
                 f_te = datetime(t_ey, months_list.index(t_em_name) + 1, calendar.monthrange(t_ey, months_list.index(t_em_name) + 1)[1])
+
+                date_order_valid = f_te >= f_ts
+                if not date_order_valid:
+                    st.error("⚠️ Error: Transitional End Month must be same or after Transitional Start Month.")
+
                 f_as = f_te + timedelta(days=1)
                 prev_expiry_calc = f_ts - timedelta(days=1)
                 trans_month_label = f_ts.strftime("%B %Y")
