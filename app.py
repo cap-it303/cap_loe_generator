@@ -38,6 +38,12 @@ def format_suffix_date(d):
     suffix = 'th' if 11 <= day <= 13 else {1: 'st', 2: 'nd', 3: 'rd'}.get(day % 10, 'th')
     return d.strftime(f"{day}{suffix} %B %Y")
 
+def format_ic(ic_str):
+    """Converts 900101105555 to 900101-10-5555"""
+    if len(ic_str) == 12:
+        return f"{ic_str[:6]}-{ic_str[6:8]}-{ic_str[8:]}"
+    return ic_str
+
 def number_to_word_format(n_str):
     words = {
         '1': 'One', '2': 'Two', '3': 'Three', '4': 'Four', '5': 'Five', '6': 'Six', '7': 'Seven', '8': 'Eight', '9': 'Nine', '10': 'Ten',
@@ -262,7 +268,7 @@ if perm_template or fix_template:
 
                 data_map = {
                     "{{TODAY}}": format_suffix_date(datetime.today()),
-                    "{{NAME}}": name.upper(), "{{IC_NUMBER}}": ic_number,
+                    "{{NAME}}": name.upper(), "{{IC_NUMBER}}": format_ic(ic_number),
                     "{{JOB_TITLE}}": job_title, "{{GRADE}}": emp_grade.upper(), 
                     "{{START_DATE}}": format_suffix_date(start_date),
                     "{{SALARY}}": fmt_rm(salary_clean), "{{CEO_NAME}}": ceo_name.upper(),
